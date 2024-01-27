@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Store_1
+  - Location
   layers:
   - Default
   - TransparentFX

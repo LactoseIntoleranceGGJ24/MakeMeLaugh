@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private float maxSpeed = 5f;
-    private float currentSpeed;
+    [SerializeField] private Rigidbody2D _rb;
+    [SerializeField] private float _maxSpeed = 5f;
+    private float _currentSpeed;
 
     private void Update()
     {
-        // Get input axes
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        float targetSpeed = new Vector2(horizontalInput, verticalInput).magnitude * maxSpeed;
-        currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, Time.deltaTime * 2f);
+        float targetSpeed = new Vector2(horizontalInput, verticalInput).magnitude * _maxSpeed;
+        _currentSpeed = Mathf.MoveTowards(_currentSpeed, targetSpeed, Time.deltaTime * 2f);
 
-        // Move the player
-        Vector2 movement = new Vector2(horizontalInput, verticalInput).normalized * currentSpeed;
-        rb.velocity = movement;
+        Vector2 movement = new Vector2(horizontalInput, verticalInput).normalized * _currentSpeed;
+        _rb.velocity = movement;
     }
 }

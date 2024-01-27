@@ -1,19 +1,27 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using static UnityEditor.FilePathAttribute;
+using UnityEditor.UI;
+using UnityEngine.UI;
 
 public class LocationManagerScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject[] _locationList;
-    public GameObject _restaurant;
-    public GameObject _player;
-    public PlayerWeapon _playerWeapon;
+
+    [SerializeField] private GameObject[] _locationList;
+    [SerializeField] private GameObject _restaurant;
+    [SerializeField] private GameObject _player;
+    [SerializeField] private ReviewScript _reviewScript;
+    [SerializeField] private PlayerWeapon _playerWeapon;
+    [SerializeField] private GameObject _enemySpawner;
     private GameObject _activeLocation;
     private int _questsRemaining;
-    public ArrowScript arrowScript;
+    private float _timer = 30f;
+    [SerializeField] private ArrowScript arrowScript;
+    [SerializeField] private Text timerText;
     int locationNumber = 0;
     void Start()
     {
@@ -25,33 +33,49 @@ public class LocationManagerScript : MonoBehaviour
     }
 
     // Using FixedUpdate for testing, this should be its own function
-    void FixedUpdate()
+    void Update()
     {
+        _timer -= Time.deltaTime;
+        if (_timer <= 0)
+        {
+            //could game over for this
+            _timer = 0;
+        }
+        
+        timerText.text = Mathf.FloorToInt(_timer).ToString();
+
         if (Vector3.Distance(_player.transform.position, _activeLocation.transform.position) < 5)
         {
-            LocationReached();
+            LocationReached(_timer);
         }
+
     }
 
-    void LocationReached()
+    void LocationReached(float timeRemaining)
     {
+        //_reviewScript.Review(timeRemaining, _questsRemaining);
+        _activeLocation.GetComponent<SpriteRenderer>().color = Color.white;
+       
         
-        if (_questsRemaining > 0) 
-        {   
+        if (_questsRemaining > 0)
+        {
             _playerWeapon.Boost(0.3f, 8f);
-            locationNumber = Random.Range(0, _locationList.Length);
+            locationNumber = Random.Range(0, _locationList.Length); //there is a small chance to get the same location twice in a row
             _activeLocation = _locationList[locationNumber];
-            arrowScript.UpdateLocation(_activeLocation);
-            _questsRemaining -= 1;
-        } else if (_questsRemaining == 0)
+            Debug.Log("House" + _questsRemaining);
+        }
+        if (_questsRemaining == 0)
         {
             _activeLocation = _restaurant;
-            locationNumber = Random.Range(0, _locationList.Length);
-            arrowScript.UpdateLocation(_activeLocation);
-            _questsRemaining = 3;
+            _questsRemaining = 4;
+            _player.GetComponent<PlayerHealth>().Heal(70);
+            _enemySpawner.GetComponent<EnemySpawner>().IncreaseSpawnRate();
+            Debug.Log("Restaurant" + _questsRemaining);
         }
-        Debug.Log("Location reached, " +_questsRemaining +" quests remaining");
-
+        _activeLocation.GetComponent<SpriteRenderer>().color = Color.yellow;
+        arrowScript.UpdateLocation(_activeLocation);
+        _timer = 30f;
+        _questsRemaining -= 1;
     }
 
 

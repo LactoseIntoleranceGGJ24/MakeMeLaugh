@@ -39,7 +39,6 @@ public class Bullet : MonoBehaviour
             if (_deathTime <= 0)
             {
                 Destroy(gameObject);
-                Debug.Log("dead");
             }
         }
 

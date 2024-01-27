@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
 
         Vector3 movement = new Vector3(horizontalInput, verticalInput, 0).normalized;
         _velocity += movement * Time.deltaTime * _acceleration;
-        _velocity = Vector3.ClampMagnitude(_velocity, _maxSpeed);
+        _velocity = Vector3.ClampMagnitude(_velocity, _currentMaxSpeed);
         //Debug.Log(_velocity.magnitude);
         this.transform.position += _velocity * Time.deltaTime;
 

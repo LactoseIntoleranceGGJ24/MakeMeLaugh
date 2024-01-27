@@ -32,16 +32,16 @@ public class ArrowScript : MonoBehaviour
         //fade out if close to target
         _distance = Vector3.Distance(_cam.transform.position, _targetLocation);
 
-        Color _arrowCol = new Color(1, 1, 1, (_distance * 0.9f) - 8);
+        
 
         if (_distance < 20)
         {
-            _arrowCol.b = 0f;
+            Color _arrowCol = new Color(0.8f, 1, 0, (_distance * 0.8f) - 9);
             GetComponent<SpriteRenderer>().color = _arrowCol;
         }
         else
         {
-            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GetComponent<SpriteRenderer>().color = Color.yellow;
         }
     }
 }

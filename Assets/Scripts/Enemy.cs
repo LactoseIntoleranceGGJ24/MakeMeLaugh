@@ -8,7 +8,10 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _moveSpeed = 0.5f;
     [SerializeField] private float _despawnDistance = 20f;
     [SerializeField] private SpriteRenderer _sr;
+    private float _deathTime = 1;
+    private bool _dead = false;
     private Transform _player;
+    private Color _color = new Color(1, 1, 1);
 
     private float _knockbackDuration;
     private Vector2 _knockbackVelocity;
@@ -19,6 +22,19 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
+
+        if (_dead)
+        {
+            Destroy(gameObject.GetComponent<Collider>());
+            _deathTime -= 1 * Time.deltaTime * 3;
+            _color.a = _deathTime;
+            _sr.color = _color;
+            if (_deathTime <= 0)
+            {
+                Destroy(gameObject);
+            } 
+        }
+
         if(_knockbackDuration > 0)
         {
             transform.position += (Vector3)_knockbackVelocity * Time.deltaTime;
@@ -45,10 +61,15 @@ public class Enemy : MonoBehaviour
     {
         var dir = (Vector2)transform.position - (Vector2)collider.transform.position;
         
-        if(collider.gameObject.tag == "Player")
+        if(collider.gameObject.tag == "Player" && _dead == false)
         {
             collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(_strength);
             SetKnockback(dir.normalized * 0.4f, 0.2f);
+        }
+        if(collider.gameObject.tag == "Bullet")
+        {
+            _dead = true;
+            SetKnockback(dir.normalized * 20f, 1f);
         }
         
         SetKnockback(dir.normalized * 0.2f, 0.1f);
@@ -56,7 +77,7 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collider)
     {   
-        if(collider.gameObject.tag == "Player")
+        if(collider.gameObject.tag == "Player" && _dead == false)
         {
             collider.gameObject.GetComponent<PlayerHealth>().TakeDamageOverTime(_strength);
         }
@@ -71,4 +92,9 @@ public class Enemy : MonoBehaviour
         _knockbackDuration = duration;
         _knockbackVelocity = force;
     }
+    /*
+    public void Die()
+    {
+        _dead = true;        
+    }*/
 }

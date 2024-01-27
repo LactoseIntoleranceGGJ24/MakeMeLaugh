@@ -39,11 +39,14 @@ public class Bullet : MonoBehaviour
         _bulletDirection = dir;
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    /*void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Enemy")
         {
-            Destroy(collider.gameObject);
+
+            Enemy eScript = collider.gameObject.GetComponent<Enemy>();
+            eScript.Die();
+            //Destroy(collider.gameObject);
         }
-    }
+    }*/
 }

@@ -5398,9 +5398,17 @@ PrefabInstance:
       propertyPath: _deceleration
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1330778322332922989, guid: 1ac1e4864542b49788db6e8df12ef56a, type: 3}
+      propertyPath: _dragMultiplier
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1592064571219394684, guid: 1ac1e4864542b49788db6e8df12ef56a, type: 3}
       propertyPath: maxHits
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592064571219394684, guid: 1ac1e4864542b49788db6e8df12ef56a, type: 3}
+      propertyPath: _defaultMaxHits
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1592064571219394684, guid: 1ac1e4864542b49788db6e8df12ef56a, type: 3}
       propertyPath: _defaultShootRate

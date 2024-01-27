@@ -10,7 +10,6 @@ public class ArrowScript : MonoBehaviour
     private GameObject _cam;
     private Vector3 _arrowDirection;
     private float _distance;
-    private Color _color;
     void Start()
     {
         _cam = GameObject.FindGameObjectWithTag("MainCamera");
@@ -34,8 +33,6 @@ public class ArrowScript : MonoBehaviour
         _distance = Vector3.Distance(_cam.transform.position, _targetLocation);
 
         Color _arrowCol = new Color(1, 1, 1, (_distance * 0.9f) - 8);
-
-        //Color _arrowCol = new Color(1, 1, 1, 1);
 
         if (_distance < 20)
         {

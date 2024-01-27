@@ -29,11 +29,11 @@ public class LocationManagerScript : MonoBehaviour
     {
         if (Vector3.Distance(_player.transform.position, _activeLocation.transform.position) < 5)
         {
-            LocationReached(_activeLocation);
+            LocationReached();
         }
     }
 
-    void LocationReached(GameObject currentLocation)
+    void LocationReached()
     {
         
         if (_questsRemaining > 0) 

@@ -5630,7 +5630,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36f5a845e1f73842abcc862aac6784d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutoffTimes: []
+  cutoffTimes:
+  - 0
+  - 5
+  - 10
+  - 15
+  - 20
 --- !u!4 &1370150249
 Transform:
   m_ObjectHideFlags: 0
@@ -6198,7 +6203,7 @@ MonoBehaviour:
   - {fileID: 799068997}
   _restaurant: {fileID: 1425627750}
   _player: {fileID: 0}
-  _reviewScript: {fileID: 0}
+  _reviewScript: {fileID: 1370150247}
   _playerWeapon: {fileID: 0}
   _enemySpawner: {fileID: 1924899499}
   arrowScript: {fileID: 0}

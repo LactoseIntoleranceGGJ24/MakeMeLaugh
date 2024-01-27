@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float spawnRadiusMin;
     [SerializeField] private float spawnRadiusMax;
     private float cooldown;
-    private float[] spawnTimes = {3f, 0.3f , 0.2f, 0.1f, 0.8f, 0.5f};
+    private float[] spawnTimes = {6f, 4f, 0.2f , 0.2f, 0.1f, 0.1f, 0.9f, 0.8f, 0.7f};
     private int j = 0;
     void Start()
     {
@@ -36,13 +36,14 @@ public class EnemySpawner : MonoBehaviour
 
     public void IncreaseSpawnRate()
     {
-        if (j > spawnTimes.Length)
+        if (j >= spawnTimes.Length)
         {
             j = spawnTimes.Length;
         } else
         {
             j++;
+            Debug.Log("spawn rate increased to level " + j);
         }
-        Debug.Log(j);
+        
     }
 }

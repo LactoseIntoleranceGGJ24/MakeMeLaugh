@@ -14,11 +14,11 @@ public class LocationManagerScript : MonoBehaviour
     [SerializeField] private GameObject[] _locationList;
     [SerializeField] private GameObject _restaurant;
     [SerializeField] private GameObject _player;
-    [SerializeField] private ReviewScript _reviewScript;
+    [SerializeField] private GameObject _reviewScript;
     [SerializeField] private PlayerWeapon _playerWeapon;
     [SerializeField] private GameObject _enemySpawner;
     private GameObject _activeLocation;
-    private int _questsRemaining;
+    private int _questsRemaining = 3;
     private float _timer = 30f;
     [SerializeField] private ArrowScript arrowScript;
     [SerializeField] private Text timerText;
@@ -53,29 +53,33 @@ public class LocationManagerScript : MonoBehaviour
 
     void LocationReached(float timeRemaining)
     {
-        //_reviewScript.Review(timeRemaining, _questsRemaining);
-        _activeLocation.GetComponent<SpriteRenderer>().color = Color.white;
        
+        _activeLocation.GetComponent<SpriteRenderer>().color = Color.white;
+        int temp = 0;
         
-        if (_questsRemaining > 0)
+        if (_questsRemaining >= 0) //delivery
         {
-            _playerWeapon.Boost(0.3f, 8f);
             locationNumber = Random.Range(0, _locationList.Length); //there is a small chance to get the same location twice in a row
             _activeLocation = _locationList[locationNumber];
-            Debug.Log("House" + _questsRemaining);
+            _reviewScript.GetComponent<ReviewScript>().Review(timeRemaining);
+            temp = -1;
         }
-        if (_questsRemaining == 0)
+        if (_questsRemaining == 0) //final delivery
         {
             _activeLocation = _restaurant;
-            _questsRemaining = 4;
+            //_questsRemaining = 4;
+            temp = 3;
+        
+        }
+        if (_questsRemaining == 3) //restaurant
+        {
             _player.GetComponent<PlayerHealth>().Heal(70);
             _enemySpawner.GetComponent<EnemySpawner>().IncreaseSpawnRate();
-            Debug.Log("Restaurant" + _questsRemaining);
         }
         _activeLocation.GetComponent<SpriteRenderer>().color = Color.yellow;
         arrowScript.UpdateLocation(_activeLocation);
         _timer = 30f;
-        _questsRemaining -= 1;
+        _questsRemaining += temp;
     }
 
 

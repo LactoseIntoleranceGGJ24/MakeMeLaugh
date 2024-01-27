@@ -21,4 +21,10 @@ public class PlayerHealth : MonoBehaviour
 
         _healthUI.text = string.Format("{0:#.0} / {1}", _currentHealth, _maxHealth);
     }
+
+    public void TakeDamageOverTime(float damage) {
+        _currentHealth -= damage * Time.deltaTime;
+
+        _healthUI.text = string.Format("{0:#.0} / {1}", _currentHealth, _maxHealth);
+    } 
 }

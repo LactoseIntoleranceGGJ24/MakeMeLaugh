@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _strength = 0.5f;
     [SerializeField] private float _moveSpeed = 0.5f;
+    [SerializeField] private float _despawnDistance = 20f;
     private Transform _player;
 
     private float _knockbackDuration;
@@ -26,16 +27,31 @@ public class Enemy : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, _player.position, _moveSpeed * Time.deltaTime);
         }
+
+        if((_player.transform.position - transform.position).magnitude > _despawnDistance)
+        {
+            Destroy(gameObject);
+        }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collision.gameObject.tag == "Player")
+        var dir = (Vector2)transform.position - (Vector2)collider.transform.position;
+        
+        if(collider.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(_strength);
+            collider.gameObject.GetComponent<PlayerHealth>().TakeDamage(_strength);
+            SetKnockback(dir.normalized * 0.4f, 0.2f);
+        }
+        
+        SetKnockback(dir.normalized * 0.2f, 0.1f);
+    }
 
-            var dir = (Vector2)transform.position - (Vector2)_player.position;
-            SetKnockback(dir.normalized * 0.2f, 0.1f);
+    void OnTriggerStay2D(Collider2D collider)
+    {   
+        if(collider.gameObject.tag == "Player")
+        {
+            collider.gameObject.GetComponent<PlayerHealth>().TakeDamageOverTime(_strength);
         }
     }
 

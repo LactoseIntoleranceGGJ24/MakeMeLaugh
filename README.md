@@ -1,6 +1,6 @@
 # Delivery or Death
 
-Deliver food orders in a post-apocalyptic world of giant birds
+Deliver food orders in a post-apocalyptic world filled with hordes of hungry birds
 
 # Credits
 
@@ -23,6 +23,7 @@ Deliver food orders in a post-apocalyptic world of giant birds
 * **Three bikes in front of Japanese shop:** https://unsplash.com/photos/three-bicycles-parked-in-front-of-building-hwLAI5lRhdM
 * **Scooter sideways**: Photo by <a href="https://unsplash.com/@mikitayo?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Mikita Yo</a> on <a href="https://unsplash.com/photos/man-in-black-jacket-riding-on-bicycle-on-road-during-daytime-6BFX4wLm2e4?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 * **Delivery bag:** Photo by <a href="https://unsplash.com/@matheus_bardemaker?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Matheus Bardemaker</a> on <a href="https://unsplash.com/photos/man-in-green-jacket-sitting-on-red-and-black-motor-scooter-RwoXb6lk7rA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+* **Eucalyptus tree:** Photo by <a href="https://unsplash.com/@callump1975?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Callum Parker</a> on <a href="https://unsplash.com/photos/green-tree-on-brown-rock-formation-during-daytime-j5Ws2BtnJbM?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 
 ### Textures
 

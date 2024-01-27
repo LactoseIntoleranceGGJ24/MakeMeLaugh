@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float _strength = 0.5f;
+    [SerializeField] private float _strength = 2.5f;
     [SerializeField] private float _moveSpeed = 0.5f;
-    [SerializeField] private float _despawnDistance = 20f;
+    [SerializeField] private float _despawnDistance = 30f;
     [SerializeField] private SpriteRenderer _sr;
     private float _deathTime = 1;
     private bool _dead = false;
@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
 
     private float _knockbackDuration;
     private Vector2 _knockbackVelocity;
+
 
     void Start()
     {
@@ -26,9 +27,10 @@ public class Enemy : MonoBehaviour
         if (_dead)
         {
             Destroy(gameObject.GetComponent<Collider>());
-            _deathTime -= 1 * Time.deltaTime * 3;
+            _deathTime -= 1 * Time.deltaTime * 4;
             _color.a = _deathTime;
             _sr.color = _color;
+           
             if (_deathTime <= 0)
             {
                 Destroy(gameObject);
@@ -46,9 +48,9 @@ public class Enemy : MonoBehaviour
         {
             var newPosition = Vector2.MoveTowards(transform.position, _player.position, _moveSpeed * Time.deltaTime);
 
-            _sr.flipX = newPosition.x > transform.position.x;
+            _sr.flipX = newPosition.x > transform.position.x; 
             transform.position = newPosition;
-
+            
         }
 
         if((_player.transform.position - transform.position).magnitude > _despawnDistance)
@@ -69,7 +71,7 @@ public class Enemy : MonoBehaviour
         if(collider.gameObject.tag == "Bullet")
         {
             _dead = true;
-            SetKnockback(dir.normalized * 20f, 1f);
+            SetKnockback(dir.normalized * 30f, 1f);
         }
         
         SetKnockback(dir.normalized * 0.2f, 0.1f);

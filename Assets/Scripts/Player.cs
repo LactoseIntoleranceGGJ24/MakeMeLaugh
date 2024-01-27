@@ -6,19 +6,25 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rb;
-    [SerializeField] private float _maxSpeed = 5f;
+    [SerializeField] private float _maxSpeed = 7f;
     [SerializeField] private SpriteRenderer _sr;
-    [SerializeField] private float _acceleration = 6f;
-    [SerializeField] private float _deceleration = 5f;
+    [SerializeField] private float _acceleration = 7f;
+    [SerializeField] private float _deceleration = 7f;
     private float _currentMaxSpeed = 0f;
     private Vector3 _velocity;
+    private Color _color = Color.white;
 
     void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
+
         _sr.flipX = horizontalInput > 0;
-      
+        _color.r += 1 * Time.deltaTime;
+        _color.b += 1 * Time.deltaTime;
+        _color.g += 1 * Time.deltaTime;
+        _sr.color = _color;
+
         Vector3 movement = new Vector3(horizontalInput, verticalInput, 0).normalized;
         _velocity += movement * Time.deltaTime * _acceleration;
         _velocity = Vector3.ClampMagnitude(_velocity, _currentMaxSpeed);
@@ -44,5 +50,10 @@ public class Player : MonoBehaviour
         {
             _currentMaxSpeed = 0;
         }
+    }
+
+    public void ChangeColor(Color color)
+    {
+        _color = color;
     }
 }

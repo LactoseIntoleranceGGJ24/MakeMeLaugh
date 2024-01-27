@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - Undefined
   - GuideArrow
+  - PlayerWeapon
   layers:
   - Default
   - TransparentFX

@@ -10,14 +10,16 @@ public class LocationManagerScript : MonoBehaviour
     public GameObject[] _locationList;
     public GameObject _restaurant;
     public GameObject _player;
+    public PlayerWeapon _playerWeapon;
     private GameObject _activeLocation;
-    private bool _isRestauraunt = true;
+    private int _questsRemaining;
     public ArrowScript arrowScript;
     int locationNumber = 0;
     void Start()
     {
         arrowScript = GameObject.FindGameObjectWithTag("GuideArrow").GetComponent<ArrowScript>();
         _player = GameObject.FindGameObjectWithTag("Player");
+        _playerWeapon = GameObject.FindGameObjectWithTag("PlayerWeapon").GetComponent<PlayerWeapon>();
         _activeLocation = _restaurant;
         arrowScript.UpdateLocation(_restaurant);
     }
@@ -25,29 +27,32 @@ public class LocationManagerScript : MonoBehaviour
     // Using FixedUpdate for testing, this should be its own function
     void FixedUpdate()
     {
-        Debug.Log(Vector3.Distance(_player.transform.position, _activeLocation.transform.position));
-        if (Vector3.Distance(_player.transform.position, _activeLocation.transform.position) < 3)
+        if (Vector3.Distance(_player.transform.position, _activeLocation.transform.position) < 5)
         {
             LocationReached(_activeLocation);
         }
-
     }
 
     void LocationReached(GameObject currentLocation)
     {
-        if (_isRestauraunt == true)
-        {
+        
+        if (_questsRemaining > 0) 
+        {   
+            _playerWeapon.Boost(0.3f, 8f);
             locationNumber = Random.Range(0, _locationList.Length);
             _activeLocation = _locationList[locationNumber];
             arrowScript.UpdateLocation(_activeLocation);
-            _isRestauraunt = false;
-        } else if (_isRestauraunt == false) 
+            _questsRemaining -= 1;
+        } else if (_questsRemaining == 0)
         {
             _activeLocation = _restaurant;
+            locationNumber = Random.Range(0, _locationList.Length);
             arrowScript.UpdateLocation(_activeLocation);
-            _isRestauraunt = true;
+            _questsRemaining = 3;
         }
+        Debug.Log("Location reached, " +_questsRemaining +" quests remaining");
 
     }
+
 
 }

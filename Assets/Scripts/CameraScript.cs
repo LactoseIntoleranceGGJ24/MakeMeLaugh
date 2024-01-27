@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    public GameObject _player;
-    // Start is called before the first frame update
+    private GameObject _player;
+    //                                          this doesnt work
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
@@ -14,9 +14,11 @@ public class CameraScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        Vector3 movement = _player.transform.position + new Vector3(horizontalInput, verticalInput, 0).normalized;
+        Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+        //Vector3 actualMousePos = Camera.main.ScreenToWorldPoint(mousePos);
+
+        Vector3 target = mousePos - _player.transform.position;
+        Vector3 movement = _player.transform.position + Vector3.ClampMagnitude(target, 4);
         movement.z = -10;
         this.transform.position = movement;
 

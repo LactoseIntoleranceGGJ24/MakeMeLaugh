@@ -23,7 +23,7 @@ public class ArrowScript : MonoBehaviour
     void Update()
     {
         //position arrow relative to camera and rotate towards target
-        _arrowDirection = Vector3.MoveTowards(_cam.transform.position, _targetLocation, 5);
+        _arrowDirection = Vector3.MoveTowards(_cam.transform.position, _targetLocation, 6);
         _arrowDirection.z = 0;
         transform.position = _arrowDirection;
 
@@ -33,9 +33,9 @@ public class ArrowScript : MonoBehaviour
         //fade out if close to target
         _distance = Vector3.Distance(_cam.transform.position, _targetLocation);
 
-        //Color _arrowCol = new Color(1, 1, 1, (_distance * 0.8f) - 10);
+        Color _arrowCol = new Color(1, 1, 1, (_distance * 0.9f) - 8);
 
-        Color _arrowCol = new Color(1, 1, 1, 1);
+        //Color _arrowCol = new Color(1, 1, 1, 1);
 
         if (_distance < 20)
         {

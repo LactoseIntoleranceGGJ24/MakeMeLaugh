@@ -1,23 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] private GameObject _bullet;
-    [SerializeField] private float _shootRate;
+    [SerializeField] private float _defaultShootRate = 0.9f;
+    [SerializeField] private int maxHits;
+    private float _shootRate;
 
-    private float _cooldown;
-
+    [SerializeField] private float _cooldown;
+    private float _boostDuration;
     void Start()
     {
-        _cooldown = _shootRate;
+        _cooldown = _defaultShootRate;
+        _shootRate = _defaultShootRate;
     }
 
     void Update()
     {
         _cooldown -= Time.deltaTime;
+        _boostDuration -= Time.deltaTime;
+        
+        if (_shootRate >= _defaultShootRate)
+        {
+            _shootRate = _defaultShootRate;
+        }
+        if (_shootRate < 0.2f)
+        {
+            _shootRate = 0.2f;
+        }
 
+        if (_boostDuration <=0)
+        {
+            _shootRate += 0.1f * Time.deltaTime;
+            _boostDuration = 0; 
+        }
         if (_cooldown <= 0)
         {
             _cooldown = _shootRate;
@@ -28,7 +47,12 @@ public class PlayerWeapon : MonoBehaviour
             Vector2 direction = mousePosition - transform.position;
 
             GameObject bullet = Instantiate(_bullet, transform.position, Quaternion.identity);
-            bullet.GetComponent<Bullet>().SetBulletDirection(direction);
+            bullet.GetComponent<Bullet>().SetBulletDirection(direction, maxHits);
         }
+    }
+    public void Boost (float firerateboost, float boostduration)
+    {
+        _shootRate -= firerateboost;
+        _boostDuration = boostduration;
     }
 }

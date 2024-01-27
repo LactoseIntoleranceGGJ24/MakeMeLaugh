@@ -7,6 +7,7 @@ public class ReviewScript : MonoBehaviour
 {
     private int _starRating;
     private PlayerWeapon _playerWeapon;
+    [SerializeField] private Text reviewText;
     [SerializeField] private float[] cutoffTimes; //add 5 numbers as cutoff times for star ratings, e.g. [0, 5, 10, 15, 20] means you would get 5 stars for delivering an order with over 20 seconds remaining
     private string[] fiveStars = new string[]{ "5/5 Stars! So fresh – like I’m eating at the restaurant itself. Thank god. I don’t know how you do it." };
     private string[] fourStars = new string[] { "4/5 Stars it’s about as good as you can get when there are hordes of hungry beaks outside. Thank you — you make the bird-apocalypse bearable." };
@@ -20,15 +21,10 @@ public class ReviewScript : MonoBehaviour
        reviews = new string[][] {oneStar, twoStars, threeStars, fourStars, fiveStars};
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-
-    }
     
     public void Review(float timeRemaining)
     {
+        reviewText.text = null;
         for (int i = 4; i > 0; i--)
         {
             if (timeRemaining > cutoffTimes[i])
@@ -42,6 +38,7 @@ public class ReviewScript : MonoBehaviour
             _playerWeapon.Boost(0.3f, 8f);
         }
         Debug.Log(reviews[_starRating][0]);
-
+        string temp = reviews[_starRating][0];
+        reviewText.text = temp;
     }
 }

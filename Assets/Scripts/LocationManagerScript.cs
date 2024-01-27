@@ -57,7 +57,7 @@ public class LocationManagerScript : MonoBehaviour
         _activeLocation.GetComponent<SpriteRenderer>().color = Color.white;
         int temp = 0;
         
-        if (_questsRemaining >= 0) //delivery
+        if (_questsRemaining >= 0 && _questsRemaining < 3) //delivery
         {
             locationNumber = Random.Range(0, _locationList.Length); //there is a small chance to get the same location twice in a row
             _activeLocation = _locationList[locationNumber];
@@ -75,6 +75,9 @@ public class LocationManagerScript : MonoBehaviour
         {
             _player.GetComponent<PlayerHealth>().Heal(70);
             _enemySpawner.GetComponent<EnemySpawner>().IncreaseSpawnRate();
+            locationNumber = Random.Range(0, _locationList.Length);
+            _activeLocation = _locationList[locationNumber];
+            temp = -1;
         }
         _activeLocation.GetComponent<SpriteRenderer>().color = Color.yellow;
         arrowScript.UpdateLocation(_activeLocation);

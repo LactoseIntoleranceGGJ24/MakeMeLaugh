@@ -7,7 +7,9 @@ Deliver food orders in a post-apocalyptic world of giant birds
 ## Team
 
 **Programming:** Joseph, Venucia, Aiden
+
 **Design & Narrative:** Shaun
+
 **Art:** Tracey
 
 ## Assets

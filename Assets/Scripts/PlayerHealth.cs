@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,12 +13,12 @@ public class PlayerHealth : MonoBehaviour
     void Start() {
         _currentHealth = _maxHealth;
 
-        _healthUI.text = _currentHealth.ToString() + " / " + _maxHealth;
+        _healthUI.text = string.Format("{0:#.0} / {1}", _currentHealth, _maxHealth);
     }
 
     public void TakeDamage(float damage) {
         _currentHealth -= damage;
 
-        _healthUI.text = _currentHealth.ToString() + " / " + _maxHealth;
+        _healthUI.text = string.Format("{0:#.0} / {1}", _currentHealth, _maxHealth);
     }
 }

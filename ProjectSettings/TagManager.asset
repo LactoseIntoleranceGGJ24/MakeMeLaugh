@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Enemy
   - Store_1
   layers:
   - Default

@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _strength = 0.5f;
     [SerializeField] private float _moveSpeed = 0.5f;
     [SerializeField] private float _despawnDistance = 20f;
+    [SerializeField] private SpriteRenderer _sr;
     private Transform _player;
 
     private float _knockbackDuration;
@@ -22,10 +23,16 @@ public class Enemy : MonoBehaviour
         {
             transform.position += (Vector3)_knockbackVelocity * Time.deltaTime;
             _knockbackDuration -= Time.deltaTime;
+
+            _sr.flipX = _knockbackVelocity.x > 0;
         } 
         else 
         {
-            transform.position = Vector2.MoveTowards(transform.position, _player.position, _moveSpeed * Time.deltaTime);
+            var newPosition = Vector2.MoveTowards(transform.position, _player.position, _moveSpeed * Time.deltaTime);
+
+            _sr.flipX = newPosition.x > transform.position.x;
+            transform.position = newPosition;
+
         }
 
         if((_player.transform.position - transform.position).magnitude > _despawnDistance)

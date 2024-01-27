@@ -7,12 +7,19 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private float _maxSpeed = 5f;
+<<<<<<< Updated upstream
     [SerializeField] private float _acceleration = 6f;
     [SerializeField] private float _deceleration = 5f;
     private float _currentMaxSpeed = 0f;
     private float _currentSpeed;
     private Vector3 _velocity;
     private void Update()
+=======
+    [SerializeField] private SpriteRenderer _sr;
+    private float _currentSpeed;
+
+    void Update()
+>>>>>>> Stashed changes
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
@@ -20,6 +27,7 @@ public class Player : MonoBehaviour
         float targetSpeed = new Vector2(horizontalInput, verticalInput).magnitude * _maxSpeed;
         _currentSpeed = Mathf.MoveTowards(_currentSpeed, targetSpeed, Time.deltaTime * 2f);
 
+<<<<<<< Updated upstream
         Vector3 movement = new Vector3(horizontalInput, verticalInput, 0).normalized * _currentSpeed;
         _velocity += movement * Time.deltaTime * _acceleration;
         _velocity = Vector3.ClampMagnitude(_velocity, _currentMaxSpeed);
@@ -43,5 +51,11 @@ public class Player : MonoBehaviour
         {
             _currentMaxSpeed = 0;
         }
+=======
+        Vector2 movement = new Vector2(horizontalInput, verticalInput).normalized * _currentSpeed;
+        _rb.velocity = movement;
+
+        _sr.flipX = horizontalInput > 0;
+>>>>>>> Stashed changes
     }
 }

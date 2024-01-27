@@ -6,7 +6,11 @@ TagManager:
   tags:
   - Enemy
   - Store_1
+<<<<<<< Updated upstream
   - Location
+=======
+  - Bullet
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -43,4 +47,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 1104914529
+    locked: 0
+  - name: Enemy
+    uniqueID: 1322202797
+    locked: 0
+  - name: Bullet
+    uniqueID: 2321445443
     locked: 0

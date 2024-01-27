@@ -6,11 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Store_1
-<<<<<<< Updated upstream
-  - Location
-=======
   - Bullet
->>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -56,4 +52,7 @@ TagManager:
     locked: 0
   - name: Bullet
     uniqueID: 2321445443
+    locked: 0
+  - name: UI
+    uniqueID: 647635799
     locked: 0

@@ -21,6 +21,7 @@ public class LocationManagerScript : MonoBehaviour
     private float _timer = 30f;
     [SerializeField] private ArrowScript arrowScript;
     [SerializeField] private Text timerText;
+    AudioSource audioData;
     int locationNumber = 0;
     void Start()
     {
@@ -28,6 +29,7 @@ public class LocationManagerScript : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player");
         _activeLocation = _restaurant;
         arrowScript.UpdateLocation(_restaurant);
+        audioData = GetComponent<AudioSource>();
     }
 
     // Using FixedUpdate for testing, this should be its own function
@@ -51,7 +53,7 @@ public class LocationManagerScript : MonoBehaviour
 
     void LocationReached(float timeRemaining)
     {
-       
+        audioData.Play(0);
         _activeLocation.GetComponent<SpriteRenderer>().color = Color.white;
         int temp = 0;
         
@@ -77,7 +79,8 @@ public class LocationManagerScript : MonoBehaviour
             _activeLocation = _locationList[locationNumber];
             temp = -1;
         }
-        _activeLocation.GetComponent<SpriteRenderer>().color = Color.yellow;
+
+        _activeLocation.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 0.5f) ;
         arrowScript.UpdateLocation(_activeLocation);
         _timer = 30f;
         _questsRemaining += temp;

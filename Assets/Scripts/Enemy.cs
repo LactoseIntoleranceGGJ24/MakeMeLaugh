@@ -8,6 +8,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _moveSpeed = 0.5f;
     [SerializeField] private float _despawnDistance = 30f;
     [SerializeField] private SpriteRenderer _sr;
+    public AudioSource randomSound;
+    public AudioClip[] audioSources;
+  
     private float _deathTime = 1;
     private bool _dead = false;
     private Transform _player;
@@ -20,6 +23,17 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
+        RandomSoundness();
+    }
+    void CallAudio()
+    {
+        Invoke("RandomSoundness", 15);
+    }
+    void RandomSoundness()
+    {
+        randomSound.clip = audioSources[Random.Range(0, audioSources.Length)];
+        randomSound.Play();
+        CallAudio();
     }
     void Update()
     {

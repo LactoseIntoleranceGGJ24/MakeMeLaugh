@@ -7,7 +7,8 @@ public class SliderColorChange : MonoBehaviour
     public Image _fillImage;
     public Color _minColor = Color.red;
     public Color _maxColor = Color.green;
-
+    public AudioSource randomSound;
+    public AudioClip[] audioSources;
     void Update()
     {
         float normalizedValue = Mathf.InverseLerp(_slider.minValue, _slider.maxValue, _slider.value);

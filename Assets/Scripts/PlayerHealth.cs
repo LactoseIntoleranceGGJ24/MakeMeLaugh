@@ -10,6 +10,8 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private Slider _slider;
     [SerializeField] private float _maxHealth;
+    public AudioSource randomSound;
+    public AudioClip[] audioSources;
     private Player _player;
     private float _currentHealth;
 
@@ -22,6 +24,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        randomSound.clip = audioSources[UnityEngine.Random.Range(0, audioSources.Length)];
+        randomSound.Play();
         _currentHealth -= damage;
         _slider.value = _currentHealth;
         _player.ChangeColor(Color.red);
@@ -33,6 +37,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamageOverTime(float damage)
     {
+        randomSound.clip = audioSources[UnityEngine.Random.Range(0, audioSources.Length)];
+        randomSound.Play();
         _currentHealth -= damage * Time.deltaTime;
         _slider.value = _currentHealth;
 

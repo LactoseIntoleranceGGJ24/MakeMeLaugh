@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering;
 using UnityEngine.UI;
 using static UnityEditor.Experimental.GraphView.GraphView;
 public class ReviewScript : MonoBehaviour
@@ -15,24 +16,39 @@ public class ReviewScript : MonoBehaviour
     private string[] twoStars = new string[] { "2 Stars. Wish I could go outside again instead of having stuff delivered late all the time. I’m so sick of those mutant birds. Whose idea was it to keep feeding them food orders in the first place?" };
     private string[] oneStar = new string[] { "1 Star. Was so hungry that I was starting to wonder if maybe I should just hunt all the gulls outside and eat them." };
     private string[][] reviews;
+    private bool warmup = true;
+    private Color color = new Color(1, 1, 1, 0);
     void Start()
     {
        reviews = new string[][] {oneStar, twoStars, threeStars, fourStars, fiveStars};
     }
+    public void Update()
+    {
+        /*reviewText.color = color;
+        if (color.a > 0)
+        {
 
-    
+        }*/
+    }
+    public void WarmupOver()
+    {
+        warmup = false;
+    }
     public void Review(float timeRemaining)
     {
+        color = Color.white;
+        float t = timeRemaining;
         reviewText.text = null;
         for (int i = 4; i > 0; i--)
         {
-            if (timeRemaining > cutoffTimes[i])
+            if (t > cutoffTimes[i])
             {
                 _starRating = i; 
                 break;
             }
         }
-        if (_starRating > 2) //if over 2 stars give the weapon a fire rate boost
+
+        if (_starRating > 2 && warmup == false) //if over 2 stars give the weapon a fire rate boost
         {
             _playerWeapon.GetComponent<PlayerWeapon>().Boost(0.3f, 8f);
         }

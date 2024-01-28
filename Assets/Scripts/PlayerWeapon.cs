@@ -59,6 +59,6 @@ public class PlayerWeapon : MonoBehaviour
     public void Boost (float firerateboost, float boostduration)
     {
         _shootRate -= firerateboost;
-        _boostDuration = boostduration;
+        _boostDuration += boostduration;
     }
 }

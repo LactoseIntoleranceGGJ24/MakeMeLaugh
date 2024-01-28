@@ -8,20 +8,20 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float spawnTime;
     [SerializeField] private float spawnRadiusMin;
     [SerializeField] private float spawnRadiusMax;
+    [SerializeField] private GameObject reviews;
+    AudioSource gull;
     private float cooldown;
     private float[] spawnTimes = {6f, 4f, 0.2f , 0.2f, 0.1f, 0.1f, 0.9f, 0.8f, 0.7f};
     private int j = 0;
     void Start()
     {
         cooldown = spawnTime;
+        gull = GetComponent<AudioSource>();
     }
 
     void Update()
     {
         var posY = Random.Range(0f, 0.1f);
-
-        
-        
 
         if (cooldown <= 0)
         {
@@ -36,6 +36,11 @@ public class EnemySpawner : MonoBehaviour
 
     public void IncreaseSpawnRate()
     {
+        if (j == 2)
+        {
+            Gull();
+            reviews.GetComponent<ReviewScript>().WarmupOver();
+        }
         if (j >= spawnTimes.Length)
         {
             j = spawnTimes.Length;
@@ -45,5 +50,11 @@ public class EnemySpawner : MonoBehaviour
             Debug.Log("spawn rate increased to level " + j);
         }
         
+    }
+    public void Gull()
+    {
+        gull.Play();
+        gull.loop = true;
+        Debug.Log("Gull.");
     }
 }

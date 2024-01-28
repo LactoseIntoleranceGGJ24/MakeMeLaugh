@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
     private float _time;
     private float _deathTime = 1f;
     private Color _color = new Color(1, 1, 1);
+    AudioSource audioData;
     void Start()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -23,6 +24,7 @@ public class Bullet : MonoBehaviour
 
         _bulletDirection = direction;
         _rb.angularVelocity = Random.Range(-2000, 2000);
+        audioData = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -62,7 +64,8 @@ public class Bullet : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Enemy")
-        {  
+        {
+            audioData.Play(0);
             if (_maxHits == 1)
             {
                 var dir = (Vector2)transform.position - (Vector2)collider.transform.position;

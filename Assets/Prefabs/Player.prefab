@@ -226,6 +226,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _slider: {fileID: 9123817030448333233}
   _maxHealth: 100
+  randomSound: {fileID: 0}
+  audioSources: []
 --- !u!70 &734451810966553784
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -367,6 +369,8 @@ MonoBehaviour:
   _fillImage: {fileID: 7926091920225281169}
   _minColor: {r: 1, g: 0, b: 0, a: 1}
   _maxColor: {r: 0, g: 1, b: 0, a: 1}
+  randomSound: {fileID: 0}
+  audioSources: []
 --- !u!1 &4514787245647136465
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,6 +523,7 @@ MonoBehaviour:
   spawnTime: 0.1
   spawnRadiusMin: 12
   spawnRadiusMax: 20
+  reviews: {fileID: 0}
 --- !u!1 &5844662906831285372
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,8 +729,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1210, y: -298}
-  m_SizeDelta: {x: 1875.4, y: 631.2}
+  m_AnchoredPosition: {x: -408.8, y: -500.5}
+  m_SizeDelta: {x: 1673.5, y: 631.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4525827423319620208
 CanvasRenderer:
@@ -757,7 +762,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 80
+    m_FontSize: 76
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0

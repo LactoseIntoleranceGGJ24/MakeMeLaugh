@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
-using static UnityEditor.FilePathAttribute;
 using UnityEngine.UI;
 
 public class LocationManagerScript : MonoBehaviour

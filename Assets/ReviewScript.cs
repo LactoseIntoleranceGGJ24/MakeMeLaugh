@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.UI;
-using static UnityEditor.Experimental.GraphView.GraphView;
+
 public class ReviewScript : MonoBehaviour
 {
     private int _starRating;

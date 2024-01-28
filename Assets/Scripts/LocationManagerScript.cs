@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using static UnityEditor.FilePathAttribute;
-using UnityEditor.UI;
 using UnityEngine.UI;
 
 public class LocationManagerScript : MonoBehaviour
@@ -50,6 +49,7 @@ public class LocationManagerScript : MonoBehaviour
         }
 
     }
+ 
 
     void LocationReached(float timeRemaining)
     {
@@ -80,11 +80,12 @@ public class LocationManagerScript : MonoBehaviour
             temp = -1;
         }
 
-        _activeLocation.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 0.5f) ;
+
+        _activeLocation.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 0.2f) ;
+
         arrowScript.UpdateLocation(_activeLocation);
         _timer = 30f;
         _questsRemaining += temp;
     }
-
 
 }

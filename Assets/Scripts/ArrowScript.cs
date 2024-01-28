@@ -10,7 +10,6 @@ public class ArrowScript : MonoBehaviour
     private GameObject _cam;
     private Vector3 _arrowDirection;
     private float _distance;
-    private Color _color;
     void Start()
     {
         _cam = GameObject.FindGameObjectWithTag("MainCamera");
@@ -23,7 +22,7 @@ public class ArrowScript : MonoBehaviour
     void Update()
     {
         //position arrow relative to camera and rotate towards target
-        _arrowDirection = Vector3.MoveTowards(_cam.transform.position, _targetLocation, 5);
+        _arrowDirection = Vector3.MoveTowards(_cam.transform.position, _targetLocation, 6);
         _arrowDirection.z = 0;
         transform.position = _arrowDirection;
 
@@ -33,18 +32,16 @@ public class ArrowScript : MonoBehaviour
         //fade out if close to target
         _distance = Vector3.Distance(_cam.transform.position, _targetLocation);
 
-        //Color _arrowCol = new Color(1, 1, 1, (_distance * 0.8f) - 10);
-
-        Color _arrowCol = new Color(1, 1, 1, 1);
+        
 
         if (_distance < 20)
         {
-            _arrowCol.b = 0f;
+            Color _arrowCol = new Color(0.8f, 1, 0, (_distance * 0.8f) - 6);
             GetComponent<SpriteRenderer>().color = _arrowCol;
         }
         else
         {
-            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            GetComponent<SpriteRenderer>().color = Color.yellow;
         }
     }
 }

@@ -25,6 +25,7 @@ public class ReviewScript : MonoBehaviour
     }
     public void Update()
     {
+
         color.a = timer;
         reviewText.color = color;
         timer -= Time.deltaTime * 0.5f;
@@ -32,6 +33,7 @@ public class ReviewScript : MonoBehaviour
         {
             timer = 0;
         }
+
     }
     public void WarmupOver()
     {
@@ -39,7 +41,9 @@ public class ReviewScript : MonoBehaviour
     }
     public void Review(float timeRemaining)
     {
+
         timer = 5;
+
         float t = timeRemaining;
         reviewText.text = null;
         for (int i = 4; i > 0; i--)

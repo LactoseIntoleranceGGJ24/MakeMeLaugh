@@ -15,7 +15,6 @@ public class LocationManagerScript : MonoBehaviour
     [SerializeField] private GameObject _restaurant;
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _reviewScript;
-    [SerializeField] private PlayerWeapon _playerWeapon;
     [SerializeField] private GameObject _enemySpawner;
     private GameObject _activeLocation;
     private int _questsRemaining = 3;
@@ -27,7 +26,6 @@ public class LocationManagerScript : MonoBehaviour
     {
         arrowScript = GameObject.FindGameObjectWithTag("GuideArrow").GetComponent<ArrowScript>();
         _player = GameObject.FindGameObjectWithTag("Player");
-        _playerWeapon = GameObject.FindGameObjectWithTag("PlayerWeapon").GetComponent<PlayerWeapon>();
         _activeLocation = _restaurant;
         arrowScript.UpdateLocation(_restaurant);
     }

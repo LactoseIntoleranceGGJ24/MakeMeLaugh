@@ -36,7 +36,7 @@ public class ArrowScript : MonoBehaviour
 
         if (_distance < 20)
         {
-            Color _arrowCol = new Color(0.8f, 1, 0, (_distance * 0.8f) - 9);
+            Color _arrowCol = new Color(0.8f, 1, 0, (_distance * 0.8f) - 6);
             GetComponent<SpriteRenderer>().color = _arrowCol;
         }
         else

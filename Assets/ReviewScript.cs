@@ -6,7 +6,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class ReviewScript : MonoBehaviour
 {
     private int _starRating;
-    private PlayerWeapon _playerWeapon;
+    [SerializeField] private PlayerWeapon _playerWeapon;
     [SerializeField] private Text reviewText;
     [SerializeField] private float[] cutoffTimes; //add 5 numbers as cutoff times for star ratings, e.g. [0, 5, 10, 15, 20] means you would get 5 stars for delivering an order with over 20 seconds remaining
     private string[] fiveStars = new string[]{ "5/5 Stars! So fresh – like I’m eating at the restaurant itself. Thank god. I don’t know how you do it." };
@@ -17,7 +17,6 @@ public class ReviewScript : MonoBehaviour
     private string[][] reviews;
     void Start()
     {
-        _playerWeapon = GameObject.FindGameObjectWithTag("PlayerWeapon").GetComponent<PlayerWeapon>();
        reviews = new string[][] {oneStar, twoStars, threeStars, fourStars, fiveStars};
     }
 
@@ -35,7 +34,7 @@ public class ReviewScript : MonoBehaviour
         }
         if (_starRating > 2) //if over 2 stars give the weapon a fire rate boost
         {
-            _playerWeapon.Boost(0.3f, 8f);
+            _playerWeapon.GetComponent<PlayerWeapon>().Boost(0.3f, 8f);
         }
         Debug.Log(reviews[_starRating][0]);
         string temp = reviews[_starRating][0];

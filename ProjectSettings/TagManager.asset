@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - Store_1
   - Bullet
+  - Undefined
+  - GuideArrow
+  - PlayerWeapon
   layers:
   - Default
   - TransparentFX
